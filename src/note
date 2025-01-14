@@ -1,0 +1,52 @@
+import { createStore } from "redux";
+import "./App.css";
+function App() {
+  const BUY_MOBILE = "BUY_MOBILE";
+  const REFOUND_MOBILE = "REFOUND_MOBILE";
+  // const action = {
+  //   type: BUY_MOBILE,
+  // };
+
+  //create action creators
+  function BuyMobile(amount) {
+    return {
+      type: BUY_MOBILE,
+      payload: amount,
+    };
+  }
+  function refoundMobile() {
+    return {
+      type: REFOUND_MOBILE,
+    };
+  }
+  // const MobileReducer = (state = 100, action) => {
+  //   switch (action.type) {
+  //     case "BUY_MOBILE":
+  //       return state - 1;
+  //     default:
+  //       return state;
+  //   }
+  // };
+  const MobileReducer = (state = 100, action) => {
+    switch (action.type) {
+      case "BUY_MOBILE":
+        return state - action.payload; // action.payload === amount of BuyMobile;
+      case "REFOUND_MOBILE":
+        return state + 1;
+      default:
+        return state;
+    }
+  };
+  const store = createStore(MobileReducer);
+  // store.dispatch(action);
+
+  store.dispatch(BuyMobile(1));
+  store.dispatch(refoundMobile());
+  // store.dispatch(BuyMobile(40));
+
+  console.log(store.getState());
+
+  return <div className="Apps">hello</div>;
+}
+
+export default App;
