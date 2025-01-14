@@ -7,7 +7,9 @@ import { mobileReducer } from "./reducers/mobile-reducer";
 const rootReducer = combineReducers({
   mobile: mobileReducer,
   laptop: laptopReducer,
-  product: productReducer,
+  products: productReducer,
 });
 
+// export const store = createStore(rootReducer);
+// if we have async [data take time to loading]
 export const store = createStore(rootReducer, applyMiddleware(thunk));

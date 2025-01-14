@@ -1,14 +1,23 @@
-import { FETCH_PRODUCTS } from "./constants";
+import { ADD_PRODUCT, FETCH_PRODUCTS } from "./constants";
+
+export const getProducts = (products) => {
+  return {
+    type: FETCH_PRODUCTS,
+    payload: products,
+  };
+};
 
 export const fetchAllProducts = () => {
-  return async (dispatch, getState) => {
-    // type: FETCH_PRODUCTS,
-    // payload: amount,
+  return async (dispatch) => {
     const res = await fetch("https://fakestoreapi.com/products");
-    const data = res.json();
-    dispatch({
-      type: FETCH_PRODUCTS,
-      payload: data,
-    });
+    const data = await res.json();
+    dispatch(getProducts(data));
+  };
+};
+
+export const AddProduct = (product) => {
+  return {
+    type: ADD_PRODUCT,
+    payload: product,
   };
 };
